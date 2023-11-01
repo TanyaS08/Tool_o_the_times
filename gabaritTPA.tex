@@ -1,0 +1,538 @@
+%%
+%% This is file `gabaritTPA.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% dms.dtx  (with options: `TPA,gabarit')
+%% Example TeX file for the documentation
+%% of the jurabib package
+%% Copyright (C) 1999, 2000, 2001 Jens Berger
+%% See dms.ins  for the copyright details.
+%% 
+%%% ====================================================================
+%%%  @LaTeX-file{
+%%%     filename        = "dms.dtx",
+%%%     author    = "Nicolas Beauchemin, Damien Rioux-Lavoie, Victor Fardel, Jonathan Godin",
+%%%     copyright = "Copyright (C) 2000 , DMS
+%%%                  all rights reserved.  Copying of this file is
+%%%                  authorized only if either:
+%%%                  (1) you make absolutely no changes to your copy,
+%%%                  including name; OR
+%%%                  (2) if you do make changes, you first rename it
+%%%                  to some other name.",
+%%%     address   = "Département de Mathématiques et de Statistique",
+%%%     telephone = "514-343-6705",
+%%%     FAX       = "514-343-5700",
+%%%     email     = "aide@dms.umontreal.ca (Internet)",
+%%%     keywords  = "latex, amslatex, ams-latex, theorem",
+%%%     abstract  = " Ce fichier est un package conçu pour être
+%%%                  utilisé avec la version de LaTeX2e 1995/06/01. Il
+%%%                  est prévue pour la classe ``amsbook''. Il en
+%%%                  modifie le format des pages, l'entête des
+%%%                  sections, etc, afin d'être  conforme au modèle de
+%%%                  mémoire de maîtrise de l'Université de
+%%%                  Montréal. Finalement ce fichier est grandement
+%%%                  inspiré du fichier amsclass.dtx.",
+%%%     docstring = "The checksum field contains: CRC-16 checksum,
+%%%                  word count, line count, and character count, as
+%%%                  produced by Robert Solovay's checksum utility."}
+%%%  ====================================================================
+
+%% Pour voir les accents de ce fichier, assurez-vous que votre
+%% éditeur de texte lise le fichier en utf-8!
+
+%% La classe <dms> est construite au-dessus de <amsbook>, donc
+%% <amsmath>, <amsfonts> et <amsthm> sont automatiquement chargés.
+\documentclass[12pt,twoside,phd]{dms}
+\usepackage[utf8]{inputenc} %Obligatoires
+\usepackage[T1]{fontenc}    %
+\usepackage{setspace}
+
+%% <lmodern> incorpore les fontes en T1, pour
+%% faciliter le dépôt final. Ceci n'est pas la
+%% seule option :
+%%  1. Si cm-super est installé, vous pouvez enlever <lmodern>
+%%     (à ce moment, la police est un peu plus fidèle
+%%      au Computer Modern orginal);
+%%  2. Si vous avez une police préférée, par exemple,
+%%     <times> ou <euler> ou <mathpazo> (et bien d'autres),
+%%     alors vous pouvez remplacer <lmodern> ci-bas.
+%% Par contre, si vous faîtes face à un problème d'encapsulation
+%% lors dépôt final, il se peut que la solution soit d'utiliser <lmodern>.
+%% (Parfois le problème est au niveau de l'installation, donc
+%%  essayez de compiler sur un autre ordinateur sur lequel vous êtes
+%%  certain·e que l'installation est bonne.)
+\usepackage{lmodern}
+\DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
+
+%% TEXTBOX EXPERIEMENTS
+
+\usepackage[most]{tcolorbox}
+
+
+\newtcbtheorem{Summary}{\bfseries Box}{enhanced,drop shadow={black!50!white},
+  coltitle=black,
+  top=0.3in,
+  attach boxed title to top left=
+  {xshift=1.5em,yshift=-\tcboxedtitleheight/2},
+  boxed title style={size=small,colback=pink}
+}{summary}
+
+\newtcolorbox[auto counter]{summary}[1][]{title={\bfseries Box~\thetcbcounter},enhanced,drop shadow={black!50!white},
+  coltitle=black,
+  top=0.3in,
+  attach boxed title to top left=
+  {xshift=1.5em,yshift=-\tcboxedtitleheight/2},
+  boxed title style={size=small,colback=pink},#1}
+
+%% FUNNY LETTERS
+
+\usepackage{mathrsfs}
+
+%% Il n'est pas nécessaire d'utiliser <babel>, car
+%% les commandes intégrées par la classe <dms>
+%% \francais et \anglais font le travail. Néanmoins,
+%% certains autres packages nécessitent <babel> (comme
+%% <natbib>), donc simplement enlever les % devant <babel>
+%% dans ce cas. Attention! Certains packages sont sensibles
+%% à l'ordre dans lequel ils sont chargés.
+%%\francais % or
+\anglais
+%%
+%%\usepackage[english,frenchb]{babel}
+
+ % ENGLISH OPTION
+ % If you call \anglais here before the \begin{document},
+ % all the chater's header will be in english, even if you
+ % call \francais. To change this, use
+ % \entetedynamique
+
+%% La commande \sloppy peut avoir des effets étranges sur les
+%% lignes de certains paragraphes.  Dans ce cas, essayez \fussy
+%% qui suppresse les effets de \sloppy.
+%% (\fussy est normalement le comportement par défaut.)
+%% On redéfinit \sloppy, pour tenter de réduire les comportements
+%% étranges. Le seul changement apporté à la version originale
+%% est la valeur de \tolerance.
+\def\sloppy{%
+  \tolerance 500%  %9999 dans LaTeX ordinaire, mauvaise idée.
+  \emergencystretch 3em%
+  \hfuzz .5pt
+  \vfuzz\hfuzz}
+\sloppy   %appel de \sloppy pour le document
+%%\fussy  %ou \fussy
+
+%% Packages utiles.
+\usepackage{graphicx,amssymb,subfigure,icomma}
+%% icomma       permet d'écrire les nombres décimaux en
+%%                  français (p.ex. 1,23 plutôt que 1.23)
+%% subfigure    simplifie l'inclusion de figures côtes-à-côtes
+
+%% Packages parfois utiles.
+%%\usepackage{dsfont,mathrsfs,color,url,verbatim,booktabs}
+%% dsfont       symboles mathématiques \mathds
+%% mathrsfs     plus de symboles mathématiques \mathscr
+%% color        pour utiliser des couleurs (comparer avec <xcolor>)
+%% url          permet l'écriture d'url
+%% verbatim     pour écrire du code ou du texte tel quel
+%% booktabs     plus de macros pour faire les tableaux
+%%                  (voir documentation du package)
+
+%% pour que la largeur de la légende des figures soit = \textwidth
+\usepackage[labelfont=bf, width=\linewidth]{caption}
+
+%% les 3 lignes suivante servent à l'affichage de l'index
+%% dans le visionneur de pdf. <hyperref> et <bookmark>
+%% devraient être les dernier package a être chargé,
+%% donc chargez vos packages avant.
+\usepackage{hyperref}  % Ajoute les hyperlien
+\hypersetup{colorlinks=true,allcolors=black}
+\usepackage{hypcap}   % Corrige la position du lien pour les images
+\usepackage{bookmark} % Remédie à des petits problème
+                      % de <hyperref> (important qu'il
+                      % apparaisse APRÈS <hyperref>)
+
+  % Enlever les commentaires du prochaine \hypersetup et
+  % le remplir avec l'information pertinente.
+  % Ceci ajoute des « méta-données » au pdf.  C'est optionnel,
+  % mais recommandé. Vous pouvez voir ces méta-données en
+  % ouvrant un visionneur de pdf et en cherchant les propriétés
+  % du pdf. (Vous pouvez aussi tapez ' pdfinfo <nom-du-pdf> '
+  % dans un terminal.) Ces données sont utiles, par exemple,
+  % pour augmenter les chances qu'un algorithme de recherche
+  % trouve votre document sur Internet, une fois diffusé.
+%%\hypersetup{
+%%  pdftitle = {Titre de la thèse / du mémoire},
+%%  pdfauthor = {auteur·e},
+%%  pdfsubject = {Ex: Transformation de Fourier ; régressions linéaires ; ... },
+%%  pdfkeywords = {Ex: mathématiques, statistiques, groupes, variables aléatoires,...}
+%%}
+
+%% Définition des environnements utiles pour un mémoire scientifique.
+%% La numérotation est laissée à la discrétion de l'auteur·e. L'exemple
+%% illustré ici produit « Définition x.y.z » à l'extérieur d'un article
+%%   x = no. chapitre
+%%   y = no. section
+%%   z = no. définition
+%% et « Définition x » à l'intérieur d'un article
+%%   x = no. définition
+%% Les numérotations des corollaires, définitions, etc.
+%% se font de façon successive.
+%%
+%% Les macros \<type>name sont telles qu'ils suivent
+%% la langue actuelle. (P.ex. si \francais est utilisé,
+%% alors \begin{theo} va faire un Théorème et si \anglais
+%% est utilisé, \begin{theorem} fera un Theorem.)
+%%
+  % Environnement à utiliser à l'extérieur des articles
+\newtheorem{cor}{\corollaryname}[section]
+\newtheorem{deff}[cor]{\definitionname}
+\newtheorem{ex}[cor]{\examplename}
+\newtheorem{lem}[cor]{\lemmaname}
+\newtheorem{prop}[cor]{Proposition}
+\newtheorem{rem}[cor]{\remarkname}
+\newtheorem{theo}[cor]{\theoremname}
+
+  % Environnement à utiliser à l'intérieur des articles
+\newtheorem{corA}{\corollaryname}
+\newtheorem{deffA}[corA]{\definitionname}
+\newtheorem{exA}  [corA]{\examplename}
+\newtheorem{lemA} [corA]{\lemmaname}
+\newtheorem{propA}[corA]{Proposition}
+\newtheorem{remA} [corA]{\remarkname}
+\newtheorem{theoA}[corA]{\theoremname}
+%% IMPORTANT : Il faut faire \setcounter{corA}{0}
+%% au début d'un article pour recommancer à compter à 1.
+%%
+%% NOTE : Il peut être commode de redéfinir \the<type> pour
+%% obtenir la numérotation désirée. Par exemple, pour
+%% que les corollaires soit numérotés #article.#section.#sous-section,
+%% on fait
+%% \renewcommand\thecorA{\thepart.\thesubsection.\arabic{corA}}
+
+%%%
+%%% Si vous préférez que les corollaires, définitions, théorèmes,
+%%% etc. soient numérotés séparément, utilisez plutôt un bloc de
+%%% commandes de la forme :
+%%%
+
+%%\newtheorem{cor}{\corollaryname}[section]
+%%\newtheorem{deff}{\definitionname}[section]
+%%\newtheorem{ex}{\examplename}[section]
+%%\newtheorem{lem}{\lemmaname}[section]
+%%\newtheorem{prop}{Proposition}[section]
+%%\newtheorem{rem}{\remarkname}[section]
+%%\newtheorem{theo}{\theoremname}[section]
+
+%%
+%% Numérotation des équations par section
+%% et des  tableaux et figures par chapitre.
+%% Ceci peut être modifié selon les préférences de l'utilisateur.
+\numberwithin{equation}{section}
+\numberwithin{table}{chapter}
+\numberwithin{figure}{chapter}
+
+%%
+%% Si on veut faire un index, il faut décommenter la ligne
+%% suivante. Ajouter des mots à l'index avec la commande \index{mot cle} au
+%% fur et à mesure dans le texte.  Compiler, puis taper la commande
+%% makeindex pour creer les indexs.  Après une nouvelle compilation,
+%% vous aurez votre index.
+%%
+
+%%\makeindex
+
+%% Il est obligatoire d'écrire à double interligne
+%% ou à interligne et demi. On peut soit utiliser
+%% le package <setspace> ou \baselinestretch.
+%% Le package a tendance a créé des grands espaces blancs,
+%% le gabarit décourage son utilisation, mais il en
+%% reste à la discrétion de l'utilisateur·e.
+%% \usepackage[onehalfspacing]{setspace}
+ % ou
+\renewcommand{\baselinestretch}{1.286} %Interligne et demi (environ 18pt (12pt+6pt) entre les lignes)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                                     %%%%%%%%%%%%%
+%%%%%%%%%% D é b u t    d u    d o c u m e n t %%%%%%%%%%%%%
+%%%%%%%%%%                                     %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%
+%% Voici des options pour annoter les différentes versions de votre
+%% mémoire. La commande \brouillon imprime, au bas de chacune des pages, la
+%% date ainsi que l'heure de la dernière compilation de votre fichier.
+%%
+%%\brouillon
+%%
+%%
+%% \version est la version de votre manuscrit
+%%
+\version{1}
+\pagenumbering{roman}
+
+%%------------------------------------------------- %
+%%              pages i et ii                       %
+%%------------------------------------------------- %
+
+%%%
+%%% Voici les variables à définir pour les deux premières pages de votre
+%%% mémoire.
+%%%
+
+\title{Tools 'O the Times: Understanding the common properties of species interaction networks across space}
+
+\author{Tanya Strydom}
+
+\copyrightyear{2023}
+
+\department{Sciences biologiques}
+
+\date{\today} %Date du DÉPÔT INITIAL (ou du 2e dépôt s'il y a corrections majeures)
+
+\sujet{Sciences biologiques}
+%%\orientation{orientation}%Ce champ est optionnel
+%%
+%% Voici les disciplines possibles (voir avec votre directeur):
+%% \sujet{statistique},
+%% \sujet{mathématiques}, \orientation{mathématiques appliquées},
+%% \orientation{mathématiques fondamentales}
+%% \orientation{mathématiques de l'ingénieur} et
+%% \orientation{mathématiques appliquées}
+
+\president{Christopher Cameron}
+
+\directeur{Timothée Poisot}
+
+%%\codirecteur{Nom du 1er codirecteur}         % s'il y a lieu
+%%\codirecteurs{Nom du 2e codirecteur}         % s'il y a lieu
+
+\membrejury{Jaquelyn Gill}
+
+\examinateur{Mariana P. Braga}   %obligatoire pour la these
+
+%% \membresjury{Deuxième membre du jury}  % s'il y a lieu
+
+%%  \plusmembresjury{Troisième membre du jury}    % s'il y a lieu
+
+ % Cette option existe encore, mais elle n'a plus sa place
+ % dans la page titre. L'utiliser seulement si le directeur
+ % insiste...
+%%\repdoyen{Nom du représentant du doyen} %(thèse seulement)
+
+%%
+%% Fin des variables à définir. La commande \maketitle créera votre
+%% page titre.
+
+%% Pour mettre bouton qui mène à la page titre
+%% dans le visionneur de pdf. Peut être enlever.
+\pdfbookmark[chapter]{Couverture}{PageUn}
+
+\maketitle
+
+ % Pour générer la deuxième page titre, il faut appeler à nouveau \maketitle
+ % Cette page est obligatoire.
+\maketitle
+
+%%------------------------------------------------- %
+%%              pages iii                           %
+%%------------------------------------------------- %
+
+ % Les articles peuvent être en anglais, mais
+ % les autres parties du document doivent être
+ % en français. Il faut une permission pour
+ % écrire l'ensemble de la thèse en anglais.
+ % Consulter le guide de présentation des mémoires
+ % et des thèses pour de l'information plus
+ % précise et à jour.
+\francais
+
+\chapter*{Résumé}
+
+Le domaine de l’écologie des réseaux est encore limité dans sa capacité à faire des inférences mondiales à grande échelle. Ce défi est principalement dû à la difficulté d’échantillonnage des interactions sur le terrain, entraînant de nombreuses « lacunes » en ce qui concerne la couverture mondiale des données. Cette thèse adopte une approche « centrée sur les méthodes » de l'écologie des réseaux et se concentre sur l'idée de développer des outils pour aider à combler les lacunes en matière de données en présentant la prédiction comme une alternative accessible à l'échantillonnage sur le terrain et introduit deux « outils » différents qui sont prêts à poser des questions à l’échelle mondiale.
+
+Le chapitre ~\ref{Roadmap} présente les outils que nous pouvons utiliser pour faire des prédictions de réseaux et est motivé par l'idée selon laquelle avoir la capacité de prédire les interactions entre les espèces grâce à l'utilisation d'outils de modélisation est impératif pour une compréhension plus globale des réseaux écologiques. Ce chapitre comprend une preuve de concept (dans laquelle nous montrons comment un simple modèle de réseau neuronal est capable de faire des prédictions précises sur les interactions entre espèces), une évaluation des défis et des opportunités associés à l'amélioration des prédictions d'interaction et une feuille de route conceptuelle concernant l'utilisation de modèles prédictifs pour les réseaux écologiques.
+
+Les chapitres~\ref{Perspectives} et \ref{Foodweb} sont étroitement liés et se concentrent sur l'utilisation de l'intégration de graphiques pour la prédiction de réseau. Essentiellement, l'intégration de graphes nous permet de transformer un graphe (réseau) en un ensemble de vecteurs, qui capturent une propriété écologique du réseau et nous fournissent une abstraction simple mais puissante d'un réseau d'interaction et servent de moyen de maximiser les informations disponibles. disponibles à partir des réseaux d’interactions d’espèces. Parce que l'intégration de graphes nous permet de « décoder » les informations au sein d'un réseau, elle est conçue comme un outil de prédiction de réseau, en particulier lorsqu'elle est utilisée dans un cadre d'apprentissage par transfert. Elle s'appuie sur l'idée que nous pouvons utiliser les connaissances acquises en résolvant un problème connu. et l'utiliser pour résoudre un problème étroitement lié. Ici, nous avons utilisé le métaweb européen (connu) pour prédire un métaweb pour les espèces canadiennes en fonction de leur parenté phylogénétique. Ce qui rend ce travail particulièrement passionnant est que malgré le faible nombre d’espèces partagées entre ces deux régions, nous sommes capables de récupérer la plupart (91\%) des interactions.
+
+Le chapitre~\ref{SVD} approfondit la réflexion sur la complexité des réseaux et les différentes manières que nous pourrions choisir de définir la complexité. Plus spécifiquement, nous remettons en question les mesures structurelles plus traditionnelles de la complexité en présentant l'entropie SVD comme une mesure alternative de la complexité. Adopter une approche physique pour définir la complexité nous permet de réfléchir aux informations contenues dans un réseau plutôt qu'à leurs propriétés émergentes. Il est intéressant de noter que l’entropie SVD révèle que les réseaux bipartites sont très complexes et ne sont pas nécessairement conformes à l’idée selon laquelle la complexité engendre la stabilité.
+
+Enfin, je présente le package Julia \texttt{SpatialBoundaries.jl}. Ce package permet à l'utilisateur d'implémenter l'algorithme de wombling spatial pour des données disposées de manière uniforme ou aléatoire dans l'espace. Étant donné que l’algorithme de wombling spatial se concentre à la fois sur le gradient et sur la direction du changement pour un paysage donné, il peut être utilisé à la fois pour détecter les limites au sens traditionnel du terme ainsi que pour examiner de manière plus nuancée la direction des changements. Cette approche pourrait être un moyen bénéfique de réfléchir aux questions liées à la détection des limites des réseaux et à leur relation avec les limites environnementales.
+
+%%------------------------------------------------- %
+%%              pages iv                            %
+%%------------------------------------------------- %
+
+\anglais
+\chapter*{Abstract}
+
+The field of network ecology is still limited in its ability to make large-scale, global inferences. This challenge is primarily driven by the difficulty of sampling interactions in the field, leading to many ‘gaps’ with regards to global coverage of data. This thesis takes a 'methods-centric' approach to network ecology and focuses on the idea of developing tools to help with filling in the the data gaps by presenting prediction as an accessible alternative to sampling in the field and introduces two different 'tools' that are primed for asking questions at global scales.
+
+Chapter~\ref{Roadmap} maps out tools we can use to make network predictions and is driven by the idea that having the ability to predict interactions between species through the use of modelling tools is imperative for a more global understanding of ecological networks. This chapter includes a proof-of-concept (where we show how a simple neural network model is able to make accurate predictions about species interactions), an assessment of the challenges and opportunities associated with improving interaction predictions, and providing a conceptual roadmap concerned with the use of predictive models for ecological networks.
+
+Chapters~\ref{Perspectives} and \ref{Foodweb} are closely intertwined and are focused on the use of graph embedding for network prediction. Essentially graph embedding allows us to transform a graph (network) into a set of vectors, which capture an ecological property of the network and provides us with a simple, yet powerful abstraction of an interaction network and serves as a way to maximise the available information available from species interaction networks. Because graph embedding allows us to 'decode' the information within a network it is primed as a tool for network prediction, specifically when used in a transfer learning framework, this builds on the idea that we can take the knowledge gained from solving a known problem and using it to solve a closely related problem. Here we used the (known) European metaweb to predict a metaweb for Canadian species based on their phylogenetic relatedness. What makes this work particularly exciting is that despite the low number of species shared between these two regions we are able to recover most (91\%) of interactions. 
+
+Chapter~\ref{SVD} delves into thinking about the complexity of networks and the different ways we might choose to define complexity. More specifically we challenge the more traditional structural measures of complexity by presenting SVD entropy as an alternative measure of complexity. Taking a physical approach to defining complexity allows us to think about the information contained within a network as opposed to their emerging properties. Interestingly, SVD entropy reveals that bipartite networks are highly complex and do not necessarily conform to the idea that complexity begets stability. 
+
+Finally, I present the Julia package \texttt{SpatialBoundaries.jl}. This package allows the user to implement the spatial wombling algorithm for data arranged uniformly or randomly across space. Because the spatial wombling algorithm focuses on both the gradient as well as the direction of change for the given landscape it can be used both for detecting boundaries in the traditional sense as well as a more nuanced look at at the direction of changes. This approach could be a beneficial way with which to think about questions which relate to boundary detection for networks and how these relate to environmental boundaries.
+
+
+%%------------------------------------------------- %
+%%        page v --- Table de matieres              %
+%%------------------------------------------------- %
+
+\anglais
+ % \cleardoublepage termine la page actuel et force TeX
+ % a poussé les éléments flottant (fig., tables, etc.) sur
+ % la page (normalement TeX les garde en suspend jusqu'à ce
+ % qu'il trouve un endroit approprié). Avec l'option <twoside>,
+ % la commande s'assure que la prochaine page de texte est sur
+ % le recto, pour l'impression. On l'utilise ici
+ % pour que TeX sache que la table des matières etc. soit
+ % sur la page qui suit.
+%% TABLE DES MATIÈRES
+\cleardoublepage
+\pdfbookmark[chapter]{\contentsname}{toc}  % Crée un bouton sur
+                                           % la bar de navigation
+\tableofcontents
+ % LISTE DES TABLES
+\cleardoublepage
+\phantomsection  % Crée une section invisible (utile pour les hyperliens)
+\listoftables
+ % LISTE DES FIGURES
+\cleardoublepage
+\phantomsection
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LISTE DES SIGLES ET ABRÉVIATION %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Il est obligatoire, selon les directives de la FESP,
+%% pour une thèse ou un mémoire d'avoir une liste des sigles et
+%% des abréviations.  Si vous considérez que de telles listes ne seraient pas
+%% pertinentes (si, par exemple, vous n'utilisez aucun sigle ou abré.), son
+%% inclusion ou omission est laissé à votre discrétion.  En cas de doute,
+%% parlez-en à votre directeur de recherche, le coadministrateur ou au/à la
+%% bibliothécaire.
+%%
+%% Le gabarit inclut un exemple d'une liste « fait à la main ».  Il existe des outils
+%% plus sophistiqués si vous devez inclure une multitude de sigles et abréviations.
+%% Par exemple, le package <glossaries> peut faire des index élaborés.  Comme
+%% son utilisation est technique, il n'y a pas d'exemple directement dans ce gabarit.
+%% On invite les gens qui aurait à l'utiliser à lire la documentation officielle,
+%% soit en allant sur https://www.ctan.org/, soit en tapant dans un terminal :
+%%
+%% texdoc glossaries
+%%
+
+\chapter*{List of abbreviations}
+ % Option de colonnes: definir \colun ou \coldeux
+%%% Exemple
+%%% \def\colun{\bf} % Première colonne en gras
+%%% Pour numéroté les entrées, on peut faire
+%%% \newcount\abbrlist
+%%% \abbrlist=0
+%%% \def\plusun{\global\advance\abbrlist by 1\relax}
+%%% \def\colun{\plusun\the\abbrlist. }
+%%\def\coldeux{\relax}
+\begin{twocolumnlist}{.2\textwidth}{.7\textwidth}
+  RDPG & Random Dot Product Graph\\
+  SVD & Singular Value Decomposition\\
+  t-SVD & truncated Singular Value Decomposition\\
+\end{twocolumnlist}
+%% L'environnement <threecolumnlist> existe aussi pour trois colonnes.
+
+%%------------------------------------------------- %
+%%              pages vi                            %
+%%------------------------------------------------- %
+
+\newpage
+\begin{center}
+\emph{For those with the messy notebooks.\\
+To those always seeking a way}
+\end{center}
+
+\chapter*{Acknowledgements}
+
+To mom and dad. Thanks for letting me draw on the windows when the notebook space just wasn't enough. I'm sure the funny letters will wash off one day...\\
+
+To my many, many (awesome and all around great) collaborators. To the roadmap team; Michael Catchen, Francis Banville, Dominique Caron, Gabriel Dansereau, Philippe Desjardins-Proulx Norma Forero-Muñoz, Gracielle Higino, Benjamin Mercier, Andrew Gonzalez, Dominique Gravel, and Laura Pollock --- thank you for bringing your diverse scientific backgrounds, thoughts, and ideas to the table. To the metaweb team; Salomé Bouskila, Francis Banville, Ceres Barros, Dominique Caron, Maxwell Farrell, Marie-Josée Fortin, Victoria Hemming, Benjamin Mercier, Laura Pollock, and Rogini Runghen --- thanks for the (seemingly) endless rounds of feedback and tweaking to make the manuscripts more reader friendly and robust - I \emph{think} we're almost there! A special shout out to Giulio Dalla Riva for bringing the endless energy and enthusiasm when it comes to anything SVD related!\\
+
+To my advisor Timothée Poisot. Thank you for taking in the field ecologist who wanted to dip their toes into the world of thinking boxes and species interaction networks. (Turns out that the need to have a little cry before continuing with work is not unique to field work but also extends to trying to make the code go brrr). Thanks for affording me the space to grow not only as a scientist but also as an artist (\emph{sensu lato}). The chance to experiment with visual ways to communicate our science may not necessarily have resulted in more succinct manuscripts but it has for sure changed the way I interact with my research and makes me think about the ways we communicate our science maybe a bit too much!\\
+
+To the (past and present) members of the Poisot Lab. The last few years may not have been the best environment for nurturing a collaborative environment but you made the best of it, but, despite the lag-y online calls and weird time differences you managed to make 'lab-life' feel somewhat normal. Thanks for being a first port of call when trying to navigate university administration. Sorry for  always running overtime in my 1:1's (despite my best efforts). Look after Ahsoka!\\
+
+A special nod to Gracielle Higino. Thanks for always bringing the \emph{ENERGY} and for your continued mentorship and  commitment to making science a KINDER place.\\
+
+Thank you to those that are the driving force behind the Living Data Project and BIOS$^2$ training programs. The exposure and training opportunities related to 'real world' science outside of school has been invaluable.\\
+
+This work would not have been possible without funding from the Courtois Foundation, the Canadian Institute for Ecology \& Evolution (CIEE), the Viral Emergence Research Initiative (VERENA), and support provided by Calcul Québec (www.calculquebec.ca) and Compute Canada (www.computecanada.ca).
+
+ %
+ % Fin des pages liminaires.  À partir d'ici, les
+ % premières pages des chapitres ne doivent pas
+ % être numérotées
+ %
+
+\NoChapterPageNumber
+\cleardoublepage
+\pagenumbering{arabic}
+
+
+ % Il est recommandé que chaque article soit dans son propre .tex
+ % Si la bibliographie de l'article doit appaître à la fin de
+ % l'article (plutôt qu'à la fin de la thèse), il obligatoire que
+ % l'article soit dans son propre .tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%                           %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%  I N T R O D U C T I O N  %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%                           %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{00_introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%  A R T I C L E S  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%                   %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{02_Roadmap}
+\include{04_Perspectives}
+\include{03_Foodweb}
+\include{01_SVD}
+\include{05_SpatialBoundaries}
+\include{06_Conclusion}
+
+%%
+%% etc.
+
+ % S'il y a une bibliographie pour tout le document, on peut
+ % utiliser les commandes suivantes. À noter que le style est
+ % laisser au choix de l'auteur·e. (Il est même possible
+ % d'utiliser <natbib>).
+ % Il est possible d'avoir une bibliographie pour chaque
+ % chapitre. Consulter l'article en exemple pour voir
+ % comment faire.
+%%\bibliographystyle{plain-fr}
+%%\bibliography{<fichier.bib>}
+
+ % Pour les annexes :
+\appendix
+ % Les annexes se font comme les chapitres. Le fichier
+ % commence par \francais ou \anglais et ensuite
+ % \chapter{..}. Le reste est parreil à un chapitre normal.
+\include{S_foodweb}
+\include{S_perspectives}
+\include{S_boundaries}
+%%
+%% etc.
+
+\end{document}
+
+\endinput
+%%
+%% End of file `gabaritTPA.tex'.
