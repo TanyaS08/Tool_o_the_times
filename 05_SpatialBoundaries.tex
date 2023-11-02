@@ -101,6 +101,7 @@
 %
 
 \maketitle
+\begin{refsection}
 
 \begin{resume}{wombling spatial, détection des contours, limites, écologie spatiale, logiciel, Julia} Le wombling spatial est une approche permettant de détecter les contours d’un paysage bidimensionnel défini. Ceci est réalisé en calculant le taux et la direction du changement grâce à l’interpolation de points. Cela donne non seulement une approximation de la forme du paysage, mais peut également être utilisé pour identifier des cellules de limites potentielles qui délimitent un passage d'un état à un autre au sein du paysage. Nous présentons ici le package SpatialBoundaries.jl pour Julia, qui a été développé pour implémenter l'algorithme de wombling pour les ensembles de données référencés spatialement pour des paysages échantillonnés de manière uniforme ou aléatoire. D'un point de vue pratique, la fonctionnalité de wombling permet à l'utilisateur de répondre à deux questions : dans quelle mesure et dans quelle direction la variable d’intérêt change-t-elle ? et la fonctionnalité de limites identifie des cellules limites candidates. Nous concluons en fournissant un exemple fonctionnel du package utilisant les différentes couches de plantes ligneuses pour la Grande-Bretagne et l'Irlande à partir de la base de données EarthEnv.
 \end{resume}
@@ -114,8 +115,8 @@ There is value in being able to identify boundaries within a landscape
 as it provides us with a starting point from which to understand changes
 in species assemblages, ecological communities, or even simply to
 delineate areas (based on a shared property) into discrete units, for
-example ecosystemic regions \cite{Post2007ProBou, Fortin2000IssRel}.
-Here we present a \texttt{Julia} \cite{Bezanson2017JulFre} package aimed
+example ecosystemic regions (\cite{Post2007ProBou, Fortin2000IssRel}).
+Here we present a \texttt{Julia} (\cite{Bezanson2017Julia}) package aimed
 at detecting boundaries across a specified geographical area by
 identifying zones of rapid change using the wombling edge detection
 algorithm. This approach was originally developed by \cite{Womble1951DifSys}
@@ -123,19 +124,19 @@ in the context of understanding trait variation within a geographic area
 and was later modified by \cite{Barbujani1989DetReg} for the purpose of
 understanding changes in gene frequencies, although it also has a more
 general ecological application with regards to spatial data
-\cite{Fortin2005SpaAna}, serving as a complimentary approach to cluster
-analysis \cite{Fortin1995DelEco}. Wombling has applicability to a wide
+(\cite{Fortin2005SpaAna}), serving as a complimentary approach to cluster
+analysis (\cite{Fortin1995DelEco}). Wombling has applicability to a wide
 range scenarios \emph{e.g.,} trait measurements or genotypes
-\cite{Barbujani1989DetReg}, species interaction networks
-\cite{Fortin2021NetEco}, and has explicitly been used (to list a few
+(\cite{Barbujani1989DetReg}), species interaction networks
+(\cite{Fortin2021Network}), and has explicitly been used (to list a few
 examples) to detect transitions within a landscape
-\cite{Philibert2008SpaStr, Camarero2000BouDet}, and analyse the spread
-of invasive species \cite{Fitzpatrick2010EcoBou}. Although the origins
+(\cite{Philibert2008SpaStr, Camarero2000BouDet}), and analyse the spread
+of invasive species (\cite{Fitzpatrick2010EcoBou}). Although the origins
 of wombling may be rooted in anthropology and has been extensively used
 in ecology the potential applicability also extends to other systems
-such as high-energy experiments in physics \cite{Matchev2020FinWom}, or
+such as high-energy experiments in physics (\cite{Matchev2020FinWom}), or
 to understand the genetic-linguistic patterns of European populations
-\cite{Sokal1990GenLan}.
+(\cite{Sokal1990GenLan}).
 
 Broadly speaking spatial wombling is an edge-detection algorithm which
 traverses a geographic area (for the purpose of this discussion let's
@@ -147,18 +148,18 @@ implemented here) is designed to work with two-dimensional \emph{i.e.,}
 planar data (as delimited by $x$ and $y$ --- which would be the
 co-ordinates of where species richness was sampled), it is beneficial to
 view this plane as a three-dimensional object (or series of curves), as
-shown in \autoref{fig:concept}, panel A. Here the `amplitude' of the curvature of
+shown in \autoref{fig:concept_womble}, panel A. Here the `amplitude' of the curvature of
 the plane is determined by the value of $z$ (species richness) and the
 rate and direction of change is calculated by using the first-order
 partial derivative $\partial$ of the surface (curve) as described by
 $f(x,y)$. This then gives us an indication of how steep the
 gradient/curve ($m$) is between neighbouring cells as well as the
 direction (from the `low' to the `high' point; $\theta$) of the slope
-(panel B, \autoref{fig:concept}). Large values of $m$ are associated with zones
+(panel B, \autoref{fig:concept_womble}). Large values of $m$ are associated with zones
 of rapid change in the landscape and are indicative of a shift from one
 `state' to another \emph{i.e.,} a potential ecological boundary within
 the landscape (\cite{Fortin2005SpaAna}; dashed line in panel C,
-\autoref{fig:concept}). One benefit of the wombling approach is that
+\autoref{fig:concept_womble}). One benefit of the wombling approach is that
 interpolation is not necessarily restricted to a rectangular
 ($2 \times 2$) window (that would entail a landscape where points are
 regularly arranged in space) and can easily be re-written so as to
@@ -186,7 +187,7 @@ to the `high' point. Note that the dimensions of the wombled landscapes
 interpolation process \emph{i.e.,} where we originally had an
 \(n \times r\) grid we now have an (\(n\) - 1)(\(r\) - 1) sized
 grid.}
-    \label{fig:concept}
+    \label{fig:concept_womble}
 \end{figure}
 
 \subsection{Rate of change}\label{rate-of-change}
@@ -210,15 +211,15 @@ points regularly arranged in space. Additionally, as we are
 interpolating between points, it should also be noted that the original
 \(n*r\) geographical area will now be an \((n -1)(r - 1)\) sized grid
 (\emph{i.e.,} one less row and one less column of values for the wombled
-landscape as illustrated in panel C of \autoref{fig:concept}).
+landscape as illustrated in panel C of \autoref{fig:concept_womble}).
 
 When we are working with points that are irregularly arranged within the
 geographical area it is possible to use triangulation wombling
-\cite{Fortin2005SpaAna, Fortin2021NetEco, Fortin1994EdgDet}. Here the
+(\cite{Fortin2005SpaAna, Fortin2021Network, Fortin1994EdgDet}). Here the
 approach to wombling has been modified by \cite{Fortin1992DetEco} so as to
 interpolate the plane between the three nearest neighbours (as opposed
 to the usual \(2 \times 2\) grid). Nearest neighbours are found by using
-the Delaunay triangulation algorithm \cite{Delaunay1934SphVid} after
+the Delaunay triangulation algorithm (\cite{Delaunay1934SphVid}) after
 which the rate of change is still calculated in the same manner as in
 \autoref{eq:1}, however as we are now only working with a three-point
 `window' \(f(x,y)\) will be defined as:
@@ -270,7 +271,7 @@ is near constant) but the the direction of change is consistently East
 to West (\emph{i.e.,} 90$^{\circ}$) we can still infer that species
 richness is more or less uniformly increasing in a South-North direction
 (this is somewhat exemplified in the direction of change landscape of
-panel B in \autoref{fig:concept} where the dominant direction of change is
+panel B in \autoref{fig:concept_womble} where the dominant direction of change is
 East-West).
 
 \subsection{Candidate boundaries}\label{candidate-boundaries}
@@ -279,7 +280,7 @@ Detecting boundaries \emph{i.e.,} areas where the angle of the landscape
 transitions sharply is surprisingly simple. After having calculated the
 rate of change (\(m\)) for the geographical area it is possible to use
 these values to identify and assign potential boundaries
-\cite{Fortin2005SpaAna, Oden1993CatWom, Fortin1995DelEco}. As large
+(\cite{Fortin2005SpaAna, Oden1993CatWom, Fortin1995DelEco}). As large
 rate of change values are indicative of a steep gradient it stands to
 reason that these points are indicative of a shift from one state to
 another \emph{i.e.,} indicative of a boundary. Following the approach
@@ -293,7 +294,7 @@ the \((n -1)(r - 1)\) could potentially be identified as candidate
 boundary cells. This approach to identifying potential boundary cells is
 not the sole approach and there are other ways and nuances from which to
 approach boundary estimation, such as the use of Voronoi tessellations
-\cite{Fortin1995DelEco, Oden1993CatWom, Matchev2020FinWom}.
+(\cite{Fortin1995DelEco, Oden1993CatWom, Matchev2020FinWom}).
 
 \section{Methods and features}\label{methods-and-features}
 
@@ -378,9 +379,8 @@ Below is an example using the various functions within
 \texttt{SpatialBoundaries} to estimate boundaries for (\emph{i.e.,}
 patches of) wooded areas on the Southwestern islands of the Hawaiian
 Islands using landcover data from the EarthEnv project
-\cite{Tuanmu2014Glo1km} as well as integrating some functionality from
-\texttt{SimpleSDMLayers} \cite{Dansereau2021SimJl} for easier work with
-the spatial nature of the input data. The \texttt{SpatialBoundaries}
+(\cite{Tuanmu2014Glo1km}) as well as integrating some functionality from
+\texttt{SimpleSDMLayers} (\cite{Dansereau2021Simplesdmlayers}) for easier work with the spatial nature of the input data. The \texttt{SpatialBoundaries}
 package works really well with \texttt{SimpleSDMLayers}, so that you can
 (i) apply wombling and boundaries finding to a \texttt{SimpleSDMLayer}
 object, and (ii) convert the output of a \texttt{Womble} object to a
@@ -439,7 +439,7 @@ on woody cover (\emph{i.e.,} ``Evergreen/Deciduous Needleleaf Trees'',
 sense of the overall structure of raw landcover components we can sum
 these four layers and plot the total woody cover for the Southwestern
 islands (The code for the plot below will give us panel A in
-\autoref{fig:example}).
+\autoref{fig:example_womble}).
 
 \begin{verbatim}
 classes_with_trees = findall(contains.(landcover_classes, "Trees"))
@@ -460,7 +460,7 @@ rate of change (shown in levels of grey). The final two panels show the
 direction of change for all cells (\textbf{C}) and only for cells
 considered to be candidate boundary cells
 (\textbf{D}).}
-    \label{fig:example}
+    \label{fig:example_womble}
 \end{figure}
 
 Although we have previously summed the four landcover layers for the
@@ -511,7 +511,7 @@ In addition to being used to help find candidate boundary cells we can
 also use this object (\texttt{b}) as masking layer when visualising
 wombling outputs. In this case we can view the \texttt{rate} layer in a
 similar fashion to the original landcover layer but by masking it with
-\texttt{b} we only plot the candidate boundaries (B in \autoref{fig:example})
+\texttt{b} we only plot the candidate boundaries (B in \autoref{fig:example_womble})
 \emph{i.e.,} the cells with the top 10\% of highest rate of change
 values. For visualisation we will overlay the identified boundaries (in
 green) over the rate of change (in levels of grey)
@@ -523,7 +523,7 @@ current_figure()
 \end{verbatim}
 
 For this example we will plot the direction of change as radial plots
-(third and fourth panels in \autoref{fig:example}) to get an idea of the
+(third and fourth panels in \autoref{fig:example_womble}) to get an idea of the
 prominent direction of change. Here we will plot \emph{all} the
 direction values from \texttt{direction} for which the rate of change is
 greater than zero (so as to avoid denoting directions for a slope that
@@ -549,7 +549,7 @@ direction_candidate = mask(b, direction)
 Because stephist() requires a vector of radians for plotting we must
 first collect the cells and convert them from degrees to radians. Then
 we can start by plotting the direction of change of \emph{all} cells (C
-in \autoref{fig:example}).
+in \autoref{fig:example_womble}).
 
 \begin{verbatim}
 Plots.stephist(
@@ -564,7 +564,7 @@ Plots.stephist(
 \end{verbatim}
 
 Followed by plotting the direction of change only for cells that are
-considered as candidate boundary cells (D in \autoref{fig:example}).
+considered as candidate boundary cells (D in \autoref{fig:example_womble}).
 
 \begin{verbatim}
 Plots.stephist(
@@ -582,13 +582,13 @@ Plots.stephist(
 
 Edge and boundary detection (as well as their delineation) is an
 important and valuable concept in spatial ecology
-\cite{Cadenasso2003FraThe} of which wombling serves as an approach that
+(\cite{Cadenasso2003FraThe}) of which wombling serves as an approach that
 is flexible in its execution (owing to the non-lattice or triangulation
-capacity of the function) \cite{Fortin2005SpaAna, Fortin1994EdgDet} as
+capacity of the function) (\cite{Fortin2005SpaAna, Fortin1994EdgDet}) as
 well as it's capacity to detect more nuanced landscape changes as
 opposed to being limited to more abrupt discontinuities such as
 cliffs/ridges by reducing noise in the landscape
-\cite{Matchev2020FinWom}. Wombling sets us up to answer two questions
+(\cite{Matchev2020FinWom}). Wombling sets us up to answer two questions
 about the geographic area of interest: at what rate and in which
 direction does the variable of interest change? This of course has value
 when it comes to evaluating the variation (or uniformity for that
@@ -617,8 +617,8 @@ Iroquoian, Anishinabewaki, Mohawk, Huron-Wendat, and Omàmiwininiwak
 nations. TS and TP are funded by a donation from the Courtois
 Foundation.
 
-\bibliographystyle{plain}
-\sectionbibliography{ref_SpatialBoundaries.bib}
+\printbibliography{}
+\end{refsection}
 
 \endinput
 %%

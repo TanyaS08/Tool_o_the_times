@@ -112,44 +112,34 @@ TP and TS designed the study and edited the manuscript for submission. TS perfor
 \begin{abstract}{singular value decomposition, physical complexity, bipartite network, entropy, pollination, ecological network analysis} Quantifying the complexity of ecological networks has remained elusive. Primarily, complexity has been defined on the basis of the structural (or behavioural) complexity of the system. These definitions ignore the notion of “physical complexity,” which can measure the amount of information contained in an ecological network, and how difficult it would be to compress. We present relative rank deficiency and SVD entropy as measures of “external” and “internal” complexity, respectively. Using bipartite ecological networks, we find that they all show a very high, almost maximal, physical complexity. Pollination networks, in particular, are more complex when compared to other types of interactions. In addition, we find that SVD entropy relates to other structural measures of complexity (nestedness, connectance, and spectral radius), but does not inform about the resilience of a network when using simulated extinction cascades, which has previously been reported for structural measures of complexity. We argue that SVD entropy provides a fundamentally more “correct” measure of network complexity and should be added to the toolkit of descriptors of ecological networks moving forward.
 \end{abstract}
 
+\begin{refsection}
+
 \section{Introduction}
 
 Ecologists have turned to network theory because it offers a powerful
 mathematical formalism to embrace the complexity of ecological communities
-\cite{Bascompte2007PlaMut}. Indeed, analysing ecological systems as networks
+(\cite{Bascompte2007PlaMut}). Indeed, analysing ecological systems as networks
 highlighted how their structure ties into ecological properties and processes
-\cite{Proulx2005NetThi, Poulin2010NetAna}, and there has been a subsequent
-explosion of measures that purport to capture elements of network structure, to
-be related to the ecology of the system they describe \cite{Delmas2018AnaEco}.
-Since the early days of network ecology, ecological networks have been called
+(\cite{Proulx2005NetThi, Poulin2010NetAna}), and there has been a subsequent
+explosion of measures that purport to capture elements of network structure, to be related to the ecology of the system they describe (\cite{Delmas2018Analysing}). Since the early days of network ecology, ecological networks have been called
 ``complex''. This sustained interest for the notion of complexity stems, in
-part, from the strong ties it has to stability \cite{Landi2018ComSta}. As such,
+part, from the strong ties it has to stability (\cite{Landi2018Complexity}). As such,
 many authors have looked for clues, in the network structure, as to why the
-networks do not collapse \cite{Borrelli2015SelIns, Staniczenko2013GhoNes,
-Gravel2016StaCom, Brose2006AllSca}. Yet decades of theoretical refinements on
+networks do not collapse (\cite{Borrelli2015SelIns, Staniczenko2013GhoNes,
+Gravel2016StaCom, Brose2006AllSca}). Yet decades of theoretical refinements on
 the relationship between complexity and stability had a hard time when
-rigorously tested on empirical datasets \cite{Jacquet2016NoCom}; although
+rigorously tested on empirical datasets (\cite{Jacquet2016NoCom}); although
 ecological networks may be complex, our current measures of complexity do not
 translate into predictions about stability.
 
 Surprisingly, \emph{complexity} itself has proven an elusive concept to define
 in a rigorous way. It has over time been defined as connectance
-\cite{Rozdilsky2001ComCan}, as measures of the diversity of species or their
-interactions \cite{Landi2018ComSta}, or as a combination of species richness and
-trophic diversity \cite{Duffy2007FunRol}. In short, network ecology as a field
-readily assumes that because we have more information about a system, or because
-this system has more components, or simply because this system can be expressed
-as a network, it follows that the system is complex. But such a diversity of
-definitions, for a concept that is so central to our quest to understand network
-stability, decreases the clarity of what complexity means, and what all of these
-alternative definitions do actually capture. This is a common thread in some
-measures of ecological network structure, as has been discussed at length for
-the various definitions of nestedness \cite{Ulrich2009ConSG}.
+(\cite{Rozdilsky2001ComCan}), as measures of the diversity of species or their
+interactions (\cite{Landi2018Complexity}), or as a combination of species richness and trophic diversity (\cite{Duffy2007FunRol}). In short, network ecology as a field readily assumes that because we have more information about a system, or because this system has more components, or simply because this system can be expressed as a network, it follows that the system is complex. But such a diversity of definitions, for a concept that is so central to our quest to understand network stability, decreases the clarity of what complexity means, and what all of these alternative definitions do actually capture. This is a common thread in some measures of ecological network structure, as has been discussed at length for
+the various definitions of nestedness (\cite{Ulrich2009ConSG}).
 
-None of the previous definitions of complexity are formally wrong, in that they
-do capture an aspect of complexity that ultimately ties to the behaviour of the
-system, \emph{i.e.,} its low predictability over time. Yet
-\cite{Adami2002WhaCom} provides a compelling argument for why the
+None of the previous definitions of complexity are formally wrong, in that they do capture an aspect of complexity that ultimately ties to the behaviour of the system, \emph{i.e.,} its low predictability over time. Yet
+(\cite{Adami2002WhaCom}) provides a compelling argument for why the
 complexity of the behaviour does not necessarily reflects the complexity of the
 system; in fact, one would be very hard pressed to think of a more simple system
 than the logistic map used by \cite{May1976SimMat} to illustrate how easily
@@ -165,7 +155,7 @@ Ecological networks are primarily represented by their adjacency matrices,
 \emph{i.e.,} a matrix in which every entry represents a pair of species, which
 can take a value of 1 when the two species interact, and a value of 0 when they
 do not. These matrices (as any matrices) can easily be factorised using Singular
-Value Decomposition \cite{Forsythe1967ComSol, Golub1971SinVal}, which offers two
+Value Decomposition (\cite{Forsythe1967ComSol, Golub1971SinVal}), which offers two
 interesting candidate measures of complexity for ecological networks (both of
 which we describe at length in the methods). The first measure is the rank of
 the matrix, which works as an estimate of ``external complexity'', in that it
@@ -208,7 +198,7 @@ of sampling years, environments, organisms, and sampling methodologies. As such,
 this dataset is particularly suited to describe general trends across \emph{all}
 ecological networks. We specifically worked on the version of this dataset
 distributed with the \texttt{EcologicalNetworks.jl} package
-\cite{Poisot2019EcoJl} for the \emph{Julia} \cite{Bezanson2017JulFre}
+(\cite{Poisot2019EcoJl}) for the \emph{Julia} (\cite{Bezanson2017Julia})
 programming language, in which all analyses were conducted. Using bipartite
 networks means that interacting species are split into two sets (or interacting
 groups) and along different dimensions in the interaction matrix. Thus, columns
@@ -283,7 +273,7 @@ values of \(\mathbf{\sigma}\) are arranged in descending order, the singular
 values (\(\mathbf{\Sigma}\)) are unique, though the singular vectors
 (\(\mathbf{U}\) and \(\mathbf{V}\)) may not be.
 
-After the Eckart-Young-Mirsky theorem \cite{Eckart1936AppOne, Golub1987GenEck},
+After the Eckart-Young-Mirsky theorem (\cite{Eckart1936AppOne, Golub1987GenEck}),
 the number of non-zero entries (after rounding of small values if required due
 to numerical precision issues in computing the factorisation) in
 \(\mathbf{\sigma}\) is the rank of matrix \(\mathbf{A}\). For the sake of
@@ -297,14 +287,14 @@ dataset is (proportionally) explained by each vector - therefore, one can
 measure the entropy of \(\mathbf{\sigma}\) following \cite{Shannon1948MatThe}. High
 values of SVD entropy reflects that all vectors are equally important,
 \emph{i.e.,} that the structure of the ecological network cannot efficiently be
-compressed, and therefore indicates high complexity \cite{Gu2016HowLon}. Because
+compressed, and therefore indicates high complexity (\cite{Gu2016HowLon}). Because
 networks have different dimensions, we use Pielou's evenness
-\cite{Pielou1975EcoDiv} to ensure that values are lower than unity, and quantify
+(\cite{Pielou1975EcoDiv}) to ensure that values are lower than unity, and quantify
 SVD entropy, using \(s_i = \sigma_i/\text{sum}(\sigma)\) as:
 
 \[J = -\frac{1}{\ln(k)}\sum_{i=1}^k s_i\cdot\ln(s_i)\]\
 
-\section{Results and discussion}\label{results-and-discussion}
+\section{Results and discussion}\label{results-and-discussion-svd}
 
 \subsection{Most ecological networks are close to
 full-rank}\label{most-ecological-networks-are-close-to-full-rank}
@@ -363,24 +353,21 @@ degree of nestedness could be considered simpler when compared to networks with
 a lower degree of nestedness. Connectance is the realised number of interactions
 (links) in an ecological network and is calculated as the fraction of the total
 number of realised interactions (or links) and the maximum number of possible
-interactions in a network \cite{Martinez1992ConCon}. This has been shown to be a
+interactions in a network (\cite{Martinez1992ConCon}). This has been shown to be a
 good estimate of a community's resilience to perturbation
-\cite{Dunne2002NetStr}. The spectral radius of a matrix is the largest absolute
+(\cite{Dunne2002NetStr}). The spectral radius of a matrix is the largest absolute
 value of its eigenvalues, which, in addition to being presented as a measure of
 network complexity has also been suggested as an indicator of the ability of a
-system to dampen disturbances \cite{Phillips2011StrEco}.
+system to dampen disturbances (\cite{Phillips2011StrEco}).
 
 We find that SVD entropy has a clear negative relationship with nestedness,
 spectral radius, and connectance (\autoref{fig:other}). As in
 \autoref{fig:type}, mutualistic networks tend to be more complex, and they also
 are both sparser and less nested than other types of networks.
-Bastolla \cite{Bastolla2009ArcMut} give a convincing demonstration that
+\cite{Bastolla2009ArcMut} give a convincing demonstration that
 mutualistic networks are shaped to minimise competition -- this can be done by
 avoiding to duplicate overlap in interactions, thereby resulting in a network
-that is close to full rank, and with high SVD entropy. Interestingly, \autoref{fig:other}
-suggests that both nestedness and connectance measure the \emph{lack} of
-complexity in an ecological network, which contrasts to how they may commonly be
-viewed \cite{Landi2018ComSta}.
+that is close to full rank, and with high SVD entropy. Interestingly, \autoref{fig:other} suggests that both nestedness and connectance measure the \emph{lack} of complexity in an ecological network, which contrasts to how they may commonly be viewed (\cite{Landi2018Complexity}).
 
 \begin{figure}[h]
     \centering
@@ -399,11 +386,11 @@ One approach to calculating the overall structural robustness of an ecological
 network is by simulating extinction events through the sequential removal of
 species, which allows constructing an extinction curve that plots the
 relationship between species removed and cumulative secondary extinctions
-\cite{Dunne2002NetStr, Memmott2004TolPol}. Extinction events can be simulated in
+(\cite{Dunne2002NetStr, Memmott2004TolPol}). Extinction events can be simulated in
 a manner of different ways, either by removing 1) a random individual, 2)
 systematically removing the most connected species (one with the highest number
 of interactions with other species) and 3) the least connected species
-\cite{Dunne2002NetStr}. After each extinction event, we remove species from the
+(\cite{Dunne2002NetStr}). After each extinction event, we remove species from the
 network that no longer have any interacting partners, thereby simulating
 secondary extinctions. This is then repeated until there are no species
 remaining in the network. Furthermore, we can restrict extinction events to only
@@ -450,7 +437,7 @@ measure of network complexity. However, as shown in \autoref{fig:resilience}, th
 assumption that network complexity begets resilience to extinction begins to
 unravel when we use a measure of physical complexity. This is in contrast to
 previous studies that have shown how connectance plays a role in the resilience
-of networks to extinctions \cite{Dunne2002NetStr, Memmott2004TolPol}. This does
+of networks to extinctions (\cite{Dunne2002NetStr, Memmott2004TolPol}). This does
 not discount the role of using \emph{structural} measures of network complexity
 (\emph{e.g.,} connectance, nestedness or spectral radius) as indicators of their
 resilience (although possibly hinting as to why there is no strong emerging
@@ -474,10 +461,10 @@ seed dispersal (\(\mu = .888, p < 10^{-3}\)). Host-parasite and seed dispersal
 networks had apparently no difference in average complexity (\(p = .889\)).
 These results suggest that mutualistic networks may be more complex, which
 matches with previous literature: these networks have been shown to minimise
-competition \cite{Bastolla2009ArcMut} and favour unique interactions, thereby
+competition (\cite{Bastolla2009ArcMut}) and favour unique interactions, thereby
 increasing network complexity. This specific structure can appear as a
-side-process of either ecological \cite{Maynard2018NetSpa} or evolutionary
-\cite{Valverde2018ArcMut} processes, but nevertheless leaves a profound imprint
+side-process of either ecological (\cite{Maynard2018NetSpa}) or evolutionary
+(\cite{Valverde2018ArcMut}) processes, but nevertheless leaves a profound imprint
 on the complexity of the networks.
 
 \begin{figure}[h]
@@ -491,7 +478,7 @@ different interaction types}
 \subsection{Connectance constrains complexity (but also rank
 deficiency)}\label{connectance-constrains-complexity-but-also-rank-deficiency}
 
-We used simulated annealing \cite{Kirkpatrick1984OptSim} to generate networks
+We used simulated annealing (\cite{Kirkpatrick1984OptSim}) to generate networks
 with the highest, or lowest, possible SVD entropy values. From a set network
 size (30 species, 15 on each side) with a random number of interactions
 (spanning the entire range from minimally to maximally connected), we
@@ -522,7 +509,7 @@ networks always show the largest complexity, and an increase in connectance will
 always decrease complexity. Interestingly, this relationship is monotonous, and
 there is no peak of complexity where the maximal number of possible networks
 combination exists, \emph{i.e.,} around \(\text{Co} \approx 0.5\)
-\cite{Poisot2014WheEco}. This is an intriguing result -- ecological networks are
+(\cite{Poisot2014WheEco}). This is an intriguing result -- ecological networks are
 indeed extremely complex, but whereas ecologists have usually interpreted
 connectance as a measure of complexity, it is in fact sparse networks that are
 the complex ones, and connectance acts to decomplexify network structure.
@@ -559,13 +546,13 @@ be}\label{larger-networks-are-less-complex-than-they-could-be}
 
 To assess whether ecological networks are more, or less, complex than expected,
 we applied two null models that generate pseudo-random networks: Type I
-\cite{Fortuna2006HabLos}, where interactions happen proportionally to
-connectance, and Type II \cite{Bascompte2003NesAss}, where interactions happen
+(\cite{Fortuna2006HabLos}), where interactions happen proportionally to
+connectance, and Type II (\cite{Bascompte2003Nested}), where interactions happen
 proportionally to the joint degree of the two species involved. The models are
 equivalent to, respectively, the Erdos-Renyi and Configuration models
-\cite{Newman2010NetInt}, both of which are maximum entropy generative models
+(\cite{Newman2010NetInt}), both of which are maximum entropy generative models
 that reflect global (Type I) or local (Type II) constraints
-\cite{Park2004StaMec}. We generated 999 samples for every network in the
+(\cite{Park2004Statistical}). We generated 999 samples for every network in the
 dataset, and measured the \emph{z}-score of the empirical network as
 
 \[z_i = \frac{x_i-\mu_i}{\sigma_i}\]\
@@ -590,7 +577,7 @@ with an SVD entropy that is lower \emph{i.e.,} less complex than expected}
 
 Previous work on random networks (using a model that is essentially the Type I
 null model) shows that sufficiently large networks achieve maximal von Neuman
-entropy \cite{Du2010NotNeu, Passerini2011NeuEnt}. In \autoref{fig:larger}, we compare the
+entropy (\cite{Du2010NotNeu, Passerini2011NeuEnt}). In \autoref{fig:larger}, we compare the
 \emph{logistic} of \(z_i\) to the richness of the network. Transforming to the
 logistic smooths out differences in absolute value that are apparent in
 \autoref{fig:nullmod}, and projects the values in the unit range, with values
@@ -612,7 +599,9 @@ lower \emph{i.e.,} less complex than expected}
     \label{fig:larger}
 \end{figure}
 
-\section{Conclusion}\label{conclusion}
+\clearpage
+
+\section{Conclusion}\label{conclusion-svd}
 
 We present SVD entropy as a starting point to unifying (and standardising) how
 we should approach defining the complexity of ecological networks. The use of a
@@ -626,26 +615,8 @@ question as to why larger (or more mature) networks are not `maintaining' their
 expected complexity and prompts further exploration as to the role of ecological
 assembly in structuring networks.
 
-
- % Pour générer la bibliographie à la fin de l'article, utiliser la commande de
- % la classe <dms> \sectionbibliography{<nom du .bib>}. Il y a aussi la
- % possibilité d'utiliser le package <chapterbib>, auquel cas on utilise
- % simplement \bibliography normalement.
- %
- % IMPORTANT : Dans tous les cas, il faut faire pdflatex these bibtex chapitre1
- %    bibtex chapitre2
- %    .
- %    .
- %    .
- %    bibtex chapitreN pdflatex these pdflatex these
- %
- % où <these> est le nom du .tex principal (qui contient le \documentclass).
- % bibtex a besoin du .aux de chapitre1 et non du .tex. Il est parfois
- % nécessaire d'effacer le .aux et de recommencer la compilation du début.
-\bibliographystyle{plain} % style plain anglais ou
-%%\bibliographystyle{plain-fr} % style plain francais
-%%\bibliographystyle{<style>} % autre
-\sectionbibliography{ref_SVD.bib} %Donner le nom du .bib
+\printbibliography{}
+\end{refsection}
 
 \endinput
 %%

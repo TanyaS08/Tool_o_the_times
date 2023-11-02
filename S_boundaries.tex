@@ -1,6 +1,7 @@
 \anglais
 \doublespacing
 \chapter{Understanding where networks stop}\label{supp:boundaries}
+\begin{refsection}
 
 \section{Why boundaries are interesting}
 
@@ -81,7 +82,7 @@ decay ($L$) for each species depending on its trophic level.}
 
 \section{A toy example of boundary detection}
 
-The associated code for these simulations was carried out in \texttt{Julia 1.8} \cite{Bezanson2017JulFre} and can be found in a GitHub repo \href{https://github.com/PoisotLab/Omnomnomivores}{\texttt{here}}. Note that the results presented here are supposed to represent a hypothetical result and it is not so much that there is ecological knowledge to be gleaned from the figure below but rather to showcase how we can approach the idea of boundary detection across landscapes. For the initial modelling exercise presented below we had 80 species ($S$) and a 200 by 200 landscape ($M$). This landscape is generated using \texttt{NeutralLandscapes.jl}, which allows the user to specify different landscape types \emph{e.g.,} one with a clear boundary, the landscape values are used to represent the environmental value for that patch.
+The associated code for these simulations was carried out in \texttt{Julia 1.8} \cite{Bezanson2017Julia} using \emph{Makie.jl} (\cite{Danisch2021Makie}) and can be found in a GitHub repo \href{https://github.com/PoisotLab/Omnomnomivores}{\texttt{here}}. Note that the results presented here are supposed to represent a hypothetical result and it is not so much that there is ecological knowledge to be gleaned from the figure below but rather to showcase how we can approach the idea of boundary detection across landscapes. For the initial modelling exercise presented below we had 80 species ($S$) and a 200 by 200 landscape ($M$). This landscape is generated using \texttt{NeutralLandscapes.jl}, which allows the user to specify different landscape types \emph{e.g.,} one with a clear boundary, the landscape values are used to represent the environmental value for that patch.
 
 \includegraphics[width=\textwidth]{./figures/heatmaps.png}
 
@@ -91,7 +92,7 @@ The second row show the rates of change for the respective metrics, but only lim
 
 What is interesting about this simulation is that the rate of change for environmental, species richness, and connectance do not 'line-up' and that the species community and the way they interact are responding differently to changes in the environment - although the direction of change seems quite similar for species richness and connectance. This is also interesting since it might suggest that although the exact 'location' of changes might be different the way the change is propagated across the landscape is the same. Overall I would argue that there is evidence that indicates that the idea of 'ecotrophic boundaries' is one worth exploring further.
 
-\bibliographystyle{plain}
-\sectionbibliography{ref_Intro.bib}
+\printbibliography{}
+\end{refsection}
 
 \endinput
