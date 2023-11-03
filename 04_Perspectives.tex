@@ -416,9 +416,8 @@ embedding.
 \begin{tabular}{||c c c c c||} 
  \hline
  Method & Object & Technique & Reference & Application \\ [0.2ex] \hline\hline
- tSNE & nodes & statistical divergence & \cite{Hinton2002Stochastic} &
-(\cite{Cieslak2020Tdistributed}, species-environment responses\(^a\)
-\cite{Gibb2021Data},\newline host-virus network representation) \\
+ tSNE & nodes & statistical divergence & \cite{Hinton2002Stochastic} & 
+\vtop{\hbox{\strut \cite{Cieslak2020Tdistributed}, species-environment responses\(^a\)}\hbox{\strut \cite{Gibb2021Data}, host-virus network representation}} \\
 LINE & nodes & stochastic gradient descent & \cite{Tang2015Line} & \\
 SDNE & nodes & gradient descent & \cite{Wang2016Structural} & \\
 node2vec & nodes & stochastic gradient descent & \cite{Grover2016Node2vec}
@@ -427,9 +426,8 @@ HARP & nodes & meta-strategy & \cite{Chen2017Harp} & \\
 DMSE & joint nodes & deep neural network & \cite{Chen2017Deep} &
 \cite{Chen2017Deep}, species-environment interactions\(^b\) \\
 graph2vec & sub-graph & skipgram network & \cite{Narayanan2017Graph2vec} & \\
-RDPG & graph & SVD & \cite{Young2007Random} & \cite{DallaRiva2016Exploring},
-trophic interactions \cite{Poisot2021ImpMam}, host-virus network
-prediction \\
+RDPG & graph & SVD & \cite{Young2007Random} & \vtop{\hbox{\strut \cite{DallaRiva2016Exploring},
+trophic interactions}\hbox{\strut \cite{Poisot2021ImpMam}, host-virus network prediction}} \\
 GLEE & graph & Laplacian eigenmap & \cite{Torres2020Glee} & \\
 DeepWalk & graph & stochastic gradient descent & \cite{Perozzi2014Deepwalk} &
 \cite{Wardeh2021Predicting}, host-virus interactions \\
@@ -438,7 +436,7 @@ GraphKKE & graph & stochastic differential equation &
 associations\(^a\) \\
 FastEmbed & graph & eigen decomposition & \cite{Ramasamy2015Compressive} & \\
 PCA & graph & eigen decomposition & \cite{Surendran2013Graph} &
-\cite{Strydom2021Roadmap}, host-parasite interactions) \\
+\cite{Strydom2021Roadmap}, host-parasite interactions \\
 Joint methods & multiple graphs & multiple strategies & \cite{Wang2021Joint}
 & \\ [0.2ex]  
  \hline
@@ -449,7 +447,7 @@ embedded objects, alongside examples of their use in the prediction of
 species interactions. These methods have not yet been routinely used to
 predict species interactions; most examples that we identified were
 either statistical associations, or analogues to joint species
-distribution models. See also Box 1 additional discussion on Graph Neural Networks. \(^a\): application is concerned with
+distribution models. See also Box 1 for an additional discussion on Graph Neural Networks. \(^a\): application is concerned with
 \emph{statistical} interactions, which are not necessarily direct
 biotic interactions; \(^b\):application is concerned with joint-SDM-like
 approach, which is also very close to statistical associations as
@@ -539,8 +537,8 @@ same dataset). The resulting (binary) metaweb \(\mathcal{M}\) has 2131
 interactions between 206 parasites and 121 hosts, and its adjacency
 matrix has full rank (\emph{i.e.,} it represents a space with 121
 dimensions). All analyses were done using \texttt{Julia} (\cite{Bezanson2017Julia})
-version 1.7.2, \emph{Makie.jl} (\cite{Danisch2021Makie}), and
-\emph{EcologicalNetworks.jl} (\cite{Poisot2019EcoJl}).
+version 1.7.2, \texttt{Makie.jl} (\cite{Danisch2021Makie}), and
+\texttt{EcologicalNetworks.jl} (\cite{Poisot2019EcoJl}).
 
 \begin{figure}[h]
     \centering
@@ -560,6 +558,7 @@ metaweb.}
     \label{fig:illustration1}
 \end{figure}
 
+\clearpage
 
 In \autoref{fig:illustration1}, we focus on some statistical checks of the
 embedding. In panel \textbf{A}, we show that the averaged \(L_2\) loss
@@ -613,6 +612,8 @@ positions alongside the same axis for hosts grouped by taxonomic
 family.}
     \label{fig:illustration2}
 \end{figure}
+
+\clearpage
 
 The results of \autoref{fig:illustration1} show that we can extract an embedding
 of the metaweb that captures enough variance to be relevant;
