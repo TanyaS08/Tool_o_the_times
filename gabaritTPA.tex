@@ -44,7 +44,7 @@
 
 %% La classe <dms> est construite au-dessus de <amsbook>, donc
 %% <amsmath>, <amsfonts> et <amsthm> sont automatiquement chargés.
-\documentclass[12pt,twoside,phd]{dms}
+\documentclass[12pt,oneside,phd]{dms}
 \usepackage[utf8]{inputenc} %Obligatoires
 \usepackage[T1]{fontenc}    %
 \usepackage{setspace}
@@ -280,7 +280,7 @@
 %% \version est la version de votre manuscrit
 %%
 \version{1}
-\pagenumbering{roman}
+%%\pagenumbering{arabic}
 
 %%------------------------------------------------- %
 %%              pages i et ii                       %
@@ -297,11 +297,11 @@
 
 \copyrightyear{2023}
 
-\department{Sciences biologiques}
+\department{Unit\'e acad\'emique : D\'epartement de sciences biologiques, }
 
-\date{\today} %Date du DÉPÔT INITIAL (ou du 2e dépôt s'il y a corrections majeures)
+\date{8 Novembre 2023} %Date du DÉPÔT INITIAL (ou du 2e dépôt s'il y a corrections majeures)
 
-\sujet{Sciences biologiques}
+\sujet{sciences biologiques, }
 %%\orientation{orientation}%Ce champ est optionnel
 %%
 %% Voici les disciplines possibles (voir avec votre directeur):
@@ -318,9 +318,9 @@
 %%\codirecteur{Nom du 1er codirecteur}         % s'il y a lieu
 %%\codirecteurs{Nom du 2e codirecteur}         % s'il y a lieu
 
-\membrejury{Jaquelyn Gill}
+\membrejury{Mariana P. Braga}
 
-\examinateur{Mariana P. Braga}   %obligatoire pour la these
+\examinateur{Jacquelyn Gill}   %obligatoire pour la these
 
 %% \membresjury{Deuxième membre du jury}  % s'il y a lieu
 
@@ -329,7 +329,7 @@
  % Cette option existe encore, mais elle n'a plus sa place
  % dans la page titre. L'utiliser seulement si le directeur
  % insiste...
-%%\repdoyen{Nom du représentant du doyen} %(thèse seulement)
+\repdoyen{Miklos Csűrös} %(thèse seulement)
 
 %%
 %% Fin des variables à définir. La commande \maketitle créera votre
@@ -341,6 +341,7 @@
 
 \maketitle
 
+\newpage
  % Pour générer la deuxième page titre, il faut appeler à nouveau \maketitle
  % Cette page est obligatoire.
 \maketitle
@@ -370,6 +371,8 @@ Le chapitre~\ref{SVD} approfondit la réflexion sur la complexité des réseaux 
 
 Enfin, je présente le package Julia \texttt{SpatialBoundaries.jl}. Ce package permet à l'utilisateur d'implémenter l'algorithme de wombling spatial pour des données disposées de manière uniforme ou aléatoire dans l'espace. Étant donné que l’algorithme de wombling spatial se concentre à la fois sur le gradient et sur la direction du changement pour un paysage donné, il peut être utilisé à la fois pour détecter les limites au sens traditionnel du terme ainsi que pour examiner de manière plus nuancée la direction des changements. Cette approche pourrait être un moyen bénéfique de réfléchir aux questions liées à la détection des limites des réseaux et à leur relation avec les limites environnementales.
 
+\textbf{Mots-clés:} réseaux écologiques, décomposition des valeurs singulières, apprentissage par transfert, wombling spatial
+
 %%------------------------------------------------- %
 %%              pages iv                            %
 %%------------------------------------------------- %
@@ -386,6 +389,8 @@ Chapters~\ref{Perspectives} and \ref{Foodweb} are closely intertwined and are fo
 Chapter~\ref{SVD} delves into thinking about the complexity of networks and the different ways we might choose to define complexity. More specifically we challenge the more traditional structural measures of complexity by presenting SVD entropy as an alternative measure of complexity. Taking a physical approach to defining complexity allows us to think about the information contained within a network as opposed to their emerging properties. Interestingly, SVD entropy reveals that bipartite networks are highly complex and do not necessarily conform to the idea that complexity begets stability. 
 
 Finally, I present the Julia package \texttt{SpatialBoundaries.jl}. This package allows the user to implement the spatial wombling algorithm for data arranged uniformly or randomly across space. Because the spatial wombling algorithm focuses on both the gradient as well as the direction of change for the given landscape it can be used both for detecting boundaries in the traditional sense as well as a more nuanced look at at the direction of changes. This approach could be a beneficial way with which to think about questions which relate to boundary detection for networks and how these relate to environmental boundaries.
+
+\textbf{Keywords:} ecological networks, singular value decomposition, transfer learning, spatial wombling
 
 
 %%------------------------------------------------- %
@@ -465,11 +470,11 @@ To those always seeking a way}
 
 \chapter*{Acknowledgements}
 
-To my many, many (awesome and all around great) collaborators. To the roadmap team; Michael Catchen, Francis Banville, Dominique Caron, Gabriel Dansereau, Philippe Desjardins-Proulx Norma Forero-Muñoz, Gracielle Higino, Benjamin Mercier, Andrew Gonzalez, Dominique Gravel, and Laura Pollock --- thank you for bringing your diverse scientific backgrounds, thoughts, and ideas to the table. To the metaweb team; Salomé Bouskila, Francis Banville, Ceres Barros, Dominique Caron, Maxwell Farrell, Marie-Josée Fortin, Victoria Hemming, Benjamin Mercier, Laura Pollock, and Rogini Runghen --- thanks for the (seemingly) endless rounds of feedback and tweaking to make the manuscripts more reader friendly and robust - I \emph{think} we're almost there! A special shout out to Giulio Dalla Riva for bringing the endless energy and enthusiasm when it comes to anything SVD related!\\
+To my many, many (awesome and all around great) collaborators. To the roadmap team; Michael Catchen, Francis Banville, Dominique Caron, Gabriel Dansereau, Philippe Desjardins-Proulx, Norma Forero-Muñoz, Gracielle Higino, Benjamin Mercier, Andrew Gonzalez, Dominique Gravel, and Laura Pollock --- thank you for bringing your diverse scientific backgrounds, thoughts, and ideas to the table. To the metaweb team; Salomé Bouskila, Francis Banville, Ceres Barros, Dominique Caron, Maxwell Farrell, Marie-Josée Fortin, Victoria Hemming, Benjamin Mercier, Laura Pollock, and Rogini Runghen --- thanks for the (seemingly) endless rounds of feedback and tweaking to make the manuscripts more reader friendly and robust - I \emph{think} we're almost there! A special shout out to Giulio Dalla Riva for bringing the endless energy and enthusiasm when it comes to anything SVD related!\\
 
 To my advisor Timothée Poisot. Thank you for taking in the field ecologist who wanted to dip their toes into the world of thinking boxes and species interaction networks. (Turns out that the need to have a little cry before continuing with work is not unique to field work but also extends to trying to make the code go brrr). Thanks for affording me the space to grow not only as a scientist but also as an artist (\emph{sensu lato}). The chance to experiment with visual ways to communicate our science may not necessarily have resulted in more succinct manuscripts but it has for sure changed the way I interact with my research and makes me think about the ways we communicate our science maybe a bit too much!\\
 
-To the (past and present) members of the Poisot Lab. The last few years may not have been the best environment for nurturing a collaborative environment but you made the best of it, but, despite the lag-y online calls and weird time differences you managed to make 'lab-life' feel somewhat normal. Thanks for being a first port of call when trying to navigate university administration. Sorry for  always running overtime in my 1:1's (despite my best efforts). Look after Ahsoka!\\
+To the (past and present) members of the Poisot Lab. The last few years may not have been the best environment for nurturing a collaborative environment but you made the best of it. Despite the lag-y online calls and weird time differences you managed to make 'lab-life' feel somewhat normal. Thanks for being a first port of call when trying to navigate university administration. Sorry for  always running overtime in my 1:1's (despite my best efforts). Look after Ahsoka!\\
 
 A special nod to Gracielle Higino. Thanks for always bringing the \emph{ENERGY} and for your continued mentorship and  commitment to making science a KINDER place.\\
 
@@ -487,7 +492,7 @@ This work would not have been possible without funding from the Courtois Foundat
 
 \NoChapterPageNumber
 \cleardoublepage
-\pagenumbering{arabic}
+%\pagenumbering{arabic}
 
 
  % Il est recommandé que chaque article soit dans son propre .tex
@@ -514,18 +519,6 @@ This work would not have been possible without funding from the Courtois Foundat
 \include{05_SpatialBoundaries}
 \include{06_Conclusion}
 
-%%
-%% etc.
-
- % S'il y a une bibliographie pour tout le document, on peut
- % utiliser les commandes suivantes. À noter que le style est
- % laisser au choix de l'auteur·e. (Il est même possible
- % d'utiliser <natbib>).
- % Il est possible d'avoir une bibliographie pour chaque
- % chapitre. Consulter l'article en exemple pour voir
- % comment faire.
-%%\bibliographystyle{plain-fr}
-%%\bibliography{<fichier.bib>}
 
  % Pour les annexes :
 \appendix

@@ -615,7 +615,6 @@
 \let\maketitle\@maketitletwo
 } %Fin de la def de \maketitle
 \def\@maketitle{%
-    \clearpage \thispagestyle{empty}%
     \begingroup
         \normalfont\normalsize
         \topskip=84\p@  %Espace au haut de la page
@@ -681,21 +680,29 @@
         \vfill
         \copyrightline
     \endgroup
-    \cleardoublepage
 } %fin \def\@maketitle
 
 \def\@maketitletwo{
-    \cleardoublepage\thispagestyle{empty}
+    \thispagestyle{empty} 
     \begingroup
         \topskip 5pc\relax
         \vskip12\p@\@plus6\p@
         \normalfont\normalsize
         \centerline{\bf\Large\@university}
-        \setbox0=\hbox{\rm\@facultyto}
+        \vtop{\centering
+            {\rm\footnotesize\@department\\
+            \ifx\@empty\@faculty%
+                {Facult\'e des arts et des sciences}
+            \else%
+                \@faculty
+            \fi
+            \@@par}
+        }
         \centerline{\copy0}
         \nointerlineskip
         \dimen0=\wd0
-        \advance\dimen0 by 2pc
+        \bigskip
+        \hrule
         \centerline{\vrule width \dimen0 height -3pt depth 3.3pt}
         \vskip18\p@\@plus12\p@
         \ifmaitrise@ \centerline{Ce m\'emoire intitul\'e}\fi
@@ -1026,7 +1033,9 @@
   %%
 %% Utiliser pour mettre des lignes horizontales avant et après le
 %% pseudo-code
-\long\def\Hline{\par\nobreak\vskip-.5\baselineskip\nobreak\vbox{\hrule width\textwidth height1pt}\nobreak\vskip6pt\nobreak}%
+
+\long\def\Hline{\par\vskip-.5\baselineskip\nobreak\vbox{\hrule width\textwidth height1pt}\nobreak\vskip6pt\nobreak}%
+
 
 \let\c@part=\undefined
 \let\c@chapter=\undefined
